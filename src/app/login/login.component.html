@@ -1,6 +1,6 @@
 <form [formGroup]="loginForm" *ngIf= "!visible">
 	<h2>{{ headline }}</h2>
-	<input type='text' formControlName="email" placeholder='E-mail'>
+	<input type='text' formControlName="email" placeholder='E-mail' >
 <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
 	<div class="error-message" *ngIf="email.errors.required">
 		Este campo es requerido.
@@ -15,7 +15,8 @@
 			Este campo es requerido.
 		</div>
 </div>
+
   <button type='button' (click)="logIn()">LogIn</button>
   
 </form>
-<app-home *ngIf= "visible"></app-home>
+<app-home *ngIf= "visible" [info]= "info"> </app-home>

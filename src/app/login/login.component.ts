@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { UserService } from '../services/user.services';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit{
   @Output() onLogging = new EventEmitter()
   visible: Boolean = false
   private loginForm: FormGroup;
+  info = {}
 
   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   
@@ -20,6 +22,11 @@ export class LoginComponent implements OnInit{
       email: new FormControl('',[Validators.required,Validators.pattern(this.emailPattern)]),
       password: new FormControl('',Validators.required)
     });
+  }
+  instance
+
+  constructor(service: UserService){
+    this.instance = service
   }
 
   ngOnInit() {
@@ -31,10 +38,16 @@ export class LoginComponent implements OnInit{
 	logIn() {
     
     //this.onLogging.emit()
-    if (this.email.valid && this.email.value == "pcortez1408@gmail.com" && this.password.valid && this.password.value == "ctm") {
-      this.visible =true  
+    if (this.email.valid && this.email.value == "pcortez1408@gmail.com" && this.password.valid && this.password.value == "hola") {
+      this.instance.password = this.password.value
+      this.instance.email = this.email.value
+      this.instance.login()
+      this.visible =true 
+      
+      /* this.info = {email: this.email, password: this.password} */
     }else{
-      console.log("ctm")
+      this.email.setErrors({'incorrect': true});
+      console.log("fallaste")
     }
     
   }

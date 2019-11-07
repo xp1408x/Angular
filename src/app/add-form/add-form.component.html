@@ -1,0 +1,8 @@
+<form  *ngIf= "!visible">
+    <input type='text'  placeholder='Nuevo' (input)=sendValue($event.target.value)>
+    <button type='button' (click)="logIn()">Add</button>
+  
+    <button type='button' (click)="goToList()">goToList</button>
+    
+  </form>
+  <app-list *ngIf= "visible"> </app-list>
