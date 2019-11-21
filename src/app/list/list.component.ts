@@ -13,9 +13,7 @@ export class ListComponent implements OnInit {
 
 
   logIn2() {
-    this.hola = true
-    //this.onLogging.emit()
-    
+   
   }
   ngOnInit() {
   }

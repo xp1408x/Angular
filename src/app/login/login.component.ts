@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit{
   }
   instance
 
-  constructor(service: UserService){
+  constructor(service: UserService, private router: Router){
     this.instance = service
   }
 
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit{
       this.instance.password = this.password.value
       this.instance.email = this.email.value
       this.instance.login()
-      this.visible =true 
+      //this.visible =true 
+      this.router.navigate(["/home"])
       
       /* this.info = {email: this.email, password: this.password} */
     }else{

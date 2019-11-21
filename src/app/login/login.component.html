@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" *ngIf= "!visible">
+<form [formGroup]="loginForm">
 	<h2>{{ headline }}</h2>
 	<input type='text' formControlName="email" placeholder='E-mail' >
 <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">

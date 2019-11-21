@@ -1,13 +1,16 @@
-<form *ngIf= "!hola"> 
+<form> 
   <p>{{instance.email}}</p>
   <p>{{instance.password}}</p>
+  <div class="form-group">
+      <input type="text" class="form-control" (input)="text=$event.target.value">
+    </div>
   <button type='button' (click)="showData()">Show Data</button>
+  <button type='button' (click)="addToList()">Add</button>
   <button type='button' (click)="logIn2()">Back</button>
   <ul>
-    <li *ngFor= "let item of list">
+    <li *ngFor= "let item of list.list">
       {{item}}
     </li>
   </ul>
 </form> 
 <app-login *ngIf= "hola"></app-login>
-

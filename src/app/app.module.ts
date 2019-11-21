@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -10,6 +11,14 @@ import { LoggerService } from './services/logger.services';
 import { AddListService } from './services/addlist.service';
 import { AddFormComponent } from './add-form/add-form.component';
 import { ListComponent } from './list/list.component';
+
+const rutes: Routes = [
+  {path: "", component: LoginComponent},
+  {path: "home", component: HomeComponent},
+  {path: "list", component: ListComponent},
+  {path: "add-form", component: AddListService},
+  {path: "**", redirectTo: "home"},
+]
 
 @NgModule({
   declarations: [
@@ -22,9 +31,10 @@ import { ListComponent } from './list/list.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(rutes)
   ],
   providers: [UserService, LoggerService, AddListService],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
